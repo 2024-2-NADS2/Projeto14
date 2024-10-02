@@ -1,0 +1,3 @@
+[submodule "src/Frontend/ecorotafrontend"]
+	path = src/Frontend/ecorotafrontend
+	url = https://github.com/sfbrosselin/EcoRotaFECAP
