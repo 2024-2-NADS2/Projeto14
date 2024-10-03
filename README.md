@@ -6,8 +6,6 @@
 
 # EcoRota
 
-## João Pedro Brosselin
-
 ## Integrantes: <a href="https://www.linkedin.com/in/brosselindev/">João Pedro Brosselin</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Victor Rosetti</a>, <a href="https://www.linkedin.com/in/aimarlopes/">Aimar Lopes</a>, <a href="https://www.linkedin.com/in/eduardo-savino-gomes-77833a10/">Eduardo Savino</a>, <a href="https://www.linkedin.com/in/francisco-escobar/">Francisco Escobar</a>, <a href="https://www.linkedin.com/in/jbuesso/">José Carlos Buesso Jr.</a>
