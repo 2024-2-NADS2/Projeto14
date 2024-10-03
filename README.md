@@ -28,23 +28,18 @@ EcoRota é uma ferramenta que localiza pontos de coleta de lixo reciclável pró
 -Raiz<br>
 |<br>
 |-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->HTML<br>
+  &emsp;|-->Entrega 1 e 2<br>
+  &emsp;|-->Entrega 3<br>
+  &emsp;|-->antigos 4<br>
 |-->imagens<br>
 |-->src<br>
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
 |readme.md<br>
 
-<b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
-
-Há também 4 pastas que seguem da seguinte forma:
+<b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre o projeto. O mesmo que você está lendo agora.
 
 <b>documentos</b>: Toda a documentação estará nesta pasta.
-
-<b>executáveis</b>: Binários e executáveis do projeto estão nesta pasta.
 
 <b>imagens</b>: Imagens do sistema
 
