@@ -22,8 +22,6 @@
 <br><br>
 EcoRota é uma ferramenta que localiza pontos de coleta de lixo reciclável próximos de você, e icentiva o descarte consciente "Gameficando" a ação de reciclar, gerando relatórios e mantendo organizado sua rotina de reciclagem.
 <br><br>
-May the force be with you!
-<br><br>
 
 ## 🛠 Estrutura de pastas
 
