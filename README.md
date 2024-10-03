@@ -15,7 +15,7 @@
 ## Descrição
 
 <p align="center">
-<img src="/LogoEcoRota.jpg" alt="EcoRota" border="0">
+<img src="/imagens/LogoEcoRota.jpg" alt="EcoRota" border="0">
   EcoRota by <a href="https://www.linkedin.com/in/brosselindev/">João Pedro Brosselin</a>
 </p>
 
