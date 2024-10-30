@@ -1,3 +1,5 @@
+import { useState } from "react"
+import { useCookies } from 'react-cookie'
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
@@ -9,7 +11,7 @@ const Main = styled.div`
     width:100vw;
     height:100vh;
 `
-const SignUpContainer = styled.div`
+const LoginContainer = styled.form`
     display:flex;
     flex-direction:column;
     background-color:#394130;
@@ -17,6 +19,7 @@ const SignUpContainer = styled.div`
     height:85vh;
     border-radius: 35% 10% 35% 10%;
     font-family: "Baumans", system-ui;
+
     p{
         font-family:"Dosis", system-ui;
         font-weight: 600;
@@ -25,32 +28,9 @@ const SignUpContainer = styled.div`
         color:#fff6de;
     }
 `
-const NameContainer = styled.div`
-    display:flex;
-    justify-content:center;
-    gap:1vw;
-    margin:auto;
-    margin-inline:50%; 
-    font-family: "Baumans", system-ui;
-`
-const FirstName = styled.input`
-    margin:auto;
-    font-size:2.8vh;
-    background-color:#acad94;
-    border-radius: 1.5vh 1vh 2vh 1vh;
-    font-family: "Baumans", system-ui;
-`
-const SecondName = styled.input`
-    margin:auto;
-    font-size:2.8vh;
-    background-color:#acad94;
-    border-radius: 1.5vh 1vh 2vh 1vh;
-    font-family: "Baumans", system-ui;
-
-`
 const UserEmail = styled.input`
-    margin-top:5%;
     width:70%;
+    margin-top:5%;
     margin-left:15%;
     font-size:3.5vh;
     background-color:#acad94;
@@ -58,7 +38,7 @@ const UserEmail = styled.input`
     font-family: "Baumans", system-ui;
 `
 const UserPassword = styled.input`
-    margin-top:3.5%;
+    margin-top:6%;
     width:70%;
     margin-left:15%;
     font-size:3.5vh;
@@ -66,21 +46,12 @@ const UserPassword = styled.input`
     border-radius: 1.5vh 1vh 2vh 1vh;
     font-family: "Baumans", system-ui;
     `
-const SignUpText = styled.h1`
-    color:#acad94;
-    margin-left:50%;
-    font-size: 7.5vh;
-    text-align:center;
-    margin:0;
-    margin-bottom:10%;
-    margin-top: 15%;
-    `
-const SignUpButton = styled.button`
+const SignUpButton = styled.input`
     font-family: "Baumans", system-ui;
     font-size:4.5vh;
     background-color:#907359;
     color:#fff6de;
-    width:40%;
+    width:35%;
     margin:auto;
     margin-top:8%;
     border-radius: 1.5vh 1vh 2vh 1vh;
@@ -101,22 +72,46 @@ const ConfirmationLink = styled(Link)`
         color:#acad95;
     }
 `
+const Logo = styled(Link)`
+    font-size:8vw;
+    margin-top:7vh;
+    margin-bottom:8vh;
+    align-self:center;
+    color:#fff6de;
+    text-decoration:none;
+    &:hover{
+        color:#acad94;
+        transition:0.10s ease-out;
+    }
+
+`
 
 
-export default function SignUp(){
+const Login = () =>{
+
+    const [cookies, setCookie, removeCookie] = useCookies(null)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [error, setError] = useState("")
+
+    console.log(cookies)
+
+    const handleSubmit = async (e, endpoint) =>{
+        e.preventDefault()
+        
+    }
+
     return(
         <Main>
-            <SignUpContainer>
-                <SignUpText>CADASTRO</SignUpText>
-                <NameContainer>
-                    <FirstName placeholder="  NOME"/>
-                    <SecondName placeholder=" SOBRENOME"/>
-                </NameContainer>
-                <UserEmail placeholder=" EMAIL" className="text sm"/>
-                <UserPassword placeholder=" SENHA"/>
-                <SignUpButton>CADASTRE-SE</SignUpButton>
-                <p>Ja esta cadastrado? Clique <ConfirmationLink to = "/login">aqui!</ConfirmationLink></p>
-            </SignUpContainer>
+            <LoginContainer>
+                <Logo to = "/" className="fa-solid fa-route"></Logo>
+                <UserEmail type="email" placeholder="EMAIL"/>
+                <UserPassword type="password" placeholder="SENHA"/>
+                <SignUpButton type="submit" value="LOGIN"/>
+                <p>Ainda não tem uma conta? Cadastre-se <ConfirmationLink to = "/login">aqui!</ConfirmationLink></p>
+            </LoginContainer>
         </Main>
-    )
+        )
 }
+
+export default Login
