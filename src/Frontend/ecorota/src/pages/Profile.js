@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import pfp from "../assets/pfp.png"
+import { redirect, useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom"
+import { useCookies } from 'react-cookie'
 import Header from "../components/Header"
 const ProfileContainer = styled.div`
   display:flex;
@@ -47,27 +49,57 @@ const BGElipse = styled.div`
   border-radius:50% 50% 35% 35%;
   height:100vh;
 `
+const Main = styled.div`
+  display:flex;
+  font-family: 'Dosis';
+  h2{
+    max-width: fit-content;
+    margin-top: 0;
+  }
+    h1{
+    max-width: fit-content;
+    margin-bottom: 0;
+  }
+`
+const Dir = styled.div`
+  width:50%;
+    height: 90.88vh;
+`
+const Esq = styled.div`
+  width:50%;
+    height: 90.88vh;
+`
+const WelcomeText = styled.div`
+  margin:0;
+  margin-left:5vw;
+  margin-top:5vh;
+  font-size: 1.35em;
 
+`
 export default function Profile() {
+
+  const [cookies, setCookie, removeCookie] = useCookies(null)
+  const authToken = cookies.AuthToken
+  const navigate = useNavigate()
+
+  if(!authToken){
+    navigate("/")
+  }
+
+
   return (
     <>
-      <Header/> 
-      <ProfileContainer>
-        <BGElipse></BGElipse>
-        <UserContainer>
-          <UserPFP src={pfp}/>
-          <UserName>SBrosselin</UserName>
-          <LinkIcons to = "https://github.com/sfbrosselin" className="fab fa-github social-icons"></LinkIcons>
-          <LinkIcons to = "https://www.linkedin.com/in/brosselindev/" className="fab fa-linkedin social-icons"></LinkIcons>
-          <LinkIcons to = "https://www.instagram.com/brosselinj/" className="fab fa-instagram social-icons"></LinkIcons>
-        </UserContainer>
-        <div className="ProfileInfo">
-          <p className="FirstName" >João Pedro</p>
-          <p className="SurName">Brosselin</p>
-          <p className="EmailPlaceholder">EMAIL:<p className="UserEmail">brosselindev@gmail.com</p></p>
-          <p className="PhonePlaceholder">TELEFONE<p className="UserPhone">(11) 95988-4252</p></p>
-        </div>
-      </ProfileContainer>
+      <Header/>
+      <Main>
+        <Esq>
+          <WelcomeText>
+            <h1>Ola {cookies.Name}</h1>
+            <h2>Vamos ver como esta sua <br/> jornada de reciclagem?</h2>
+          </WelcomeText>
+          <h1> Olha so quanto voce ja reciclou</h1>
+        </Esq>
+        <Dir>div2</Dir>
+      </Main>
     </>
   )
 }
