@@ -160,7 +160,7 @@ const Login = () =>{
         if (authToken){
           navigate('/')
         }
-      }, [])
+      })
 
     return(
         

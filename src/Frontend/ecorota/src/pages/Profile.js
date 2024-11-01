@@ -3,6 +3,7 @@ import pfp from "../assets/pfp.png"
 import { redirect, useNavigate } from 'react-router-dom'
 import { Link } from "react-router-dom"
 import { useCookies } from 'react-cookie'
+import BarChart from '../components/BarChart'
 import Header from "../components/Header"
 const ProfileContainer = styled.div`
   display:flex;
@@ -76,6 +77,9 @@ const WelcomeText = styled.div`
   font-size: 1.35em;
 
 `
+const Container = styled.main`
+  background-color: #acad94;
+`
 export default function Profile() {
 
   const [cookies, setCookie, removeCookie] = useCookies(null)
@@ -88,7 +92,7 @@ export default function Profile() {
 
 
   return (
-    <>
+    <Container>
       <Header/>
       <Main>
         <Esq>
@@ -97,9 +101,10 @@ export default function Profile() {
             <h2>Vamos ver como esta sua <br/> jornada de reciclagem?</h2>
           </WelcomeText>
           <h1> Olha so quanto voce ja reciclou</h1>
+          <BarChart/>
         </Esq>
         <Dir>div2</Dir>
       </Main>
-    </>
+    </Container>
   )
 }
