@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { useCookies } from "react-cookie"
 
 const NavContainer = styled.nav`
     display: flex;
@@ -36,13 +37,15 @@ const Profile = styled(Link)`
 
 export default function NavBar(props){
     const {handleOpenModal} = props
+    const [cookies, setCookie, removeCookie] = useCookies(null)
+    const authToken = cookies.AuthToken
     return(
         <NavContainer>
             <NavModal onClick={handleOpenModal}>
                 <NavArrow className="fa-solid fa-chevron-down"></NavArrow>
                 <i className="fa-solid fa-signs-post"></i>
             </NavModal>
-            <Profile to='/profile' className="fa-solid fa-user" ></Profile>
+            {authToken && <Profile to='/profile' className="fa-solid fa-user" ></Profile>}
         </NavContainer>
         
     )
