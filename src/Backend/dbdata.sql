@@ -23,3 +23,6 @@ CREATE TABLE userprofile (
 );
 
 INSERT INTO userprofile (qntplastico, qntmetal, profile_email) VALUES(10, 5, 'jb@test.com');
+
+
+CREATE TABLE ecopontos

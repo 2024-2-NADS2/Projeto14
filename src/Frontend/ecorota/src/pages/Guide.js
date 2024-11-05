@@ -9,8 +9,8 @@ import LixeiraVermelha from '../components/LixeiraVermelha'
 
 const Main = styled.div`
     background-color: #fff6de;
-    width:100vw;
-    height: 100vh;
+    width:100%;
+    height: 100%;
     font-family: dosis;
     h2{
         font-weight: 550;
@@ -19,6 +19,8 @@ const Main = styled.div`
 const Container = styled.div`
     display:flex;
     flex-direction: column;
+    width:100%;
+    
 
 `
 const BottomContainer = styled.div`
@@ -28,13 +30,14 @@ const BottomContainer = styled.div`
 `
 const TextInformation = styled.div`
     text-align: center;
-    font-size:1.35em;
+    font-size:1.20em;
     display:flex;
     flex-direction: column;
     align-items:center;
     font-weight: 450;
     svg{
         margin-bottom: 1vh;
+
     }
     p{
         width: 70%;

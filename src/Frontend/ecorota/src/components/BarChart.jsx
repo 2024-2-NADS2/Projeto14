@@ -38,7 +38,7 @@ const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
     }
   ];
   return (
-    <ResponsiveContainer width="85%" height="60%">
+    <ResponsiveContainer width="85%" height="50%">
       <BarChart
         width={200}
         height={2000}

@@ -21,7 +21,7 @@ const Main = styled.div`
 `
 const Dir = styled.div`
   width:50%;
-  height: 90.88vh;
+  height: 100%;
   display:flex;
   flex-direction: column;
   justify-content:start;
@@ -60,7 +60,7 @@ const HText = styled.h2`
 `
 const Esq = styled.div`
   width:50%;
-    height: 90.88vh;
+    height: 100%;
 `
 const WelcomeText = styled.div`
   margin:0;
@@ -71,6 +71,7 @@ const WelcomeText = styled.div`
 `
 const Container = styled.main`
   background-color: #acad94;
+  height: 100vh;
 `
 const VazioTexto = styled.h1`
   font-size: 3.25em;
@@ -85,7 +86,7 @@ export default function Profile() {
   const [cookies, setCookie, removeCookie] = useCookies(null)
   const [metal, setMetal] = useState(0)
   const [plastico, setPlastico] = useState(0)
-  const [vazio, setVazio] = useState(true)
+  const [vazio, setVazio] = useState(false)
   const [vidro, setVidro] = useState(0)
   const [papel, setPapel] = useState(0)
   const authToken = cookies.AuthToken
@@ -134,6 +135,7 @@ export default function Profile() {
             <h2>Vamos ver como esta sua <br/> jornada de reciclagem?</h2>
             <h1> Olha so quanto voce ja reciclou</h1>
           </WelcomeText>
+          <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/>
           {!vazio ? <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/> : <VazioTexto>Ainda nao ha dados, vamos reciclar!</VazioTexto>}
         </Esq>
         <Dir>
