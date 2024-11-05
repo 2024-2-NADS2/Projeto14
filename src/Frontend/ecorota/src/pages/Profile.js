@@ -1,58 +1,11 @@
 import styled from "styled-components"
-import pfp from "../assets/pfp.png"
+import EarthLogo from '../components/earthlogo'
 import { redirect, useNavigate } from 'react-router-dom'
-import { Link } from "react-router-dom"
 import { useCookies } from 'react-cookie'
 import BarChart from '../components/BarChart'
 import Header from "../components/Header"
-import { useEffect, useState, useRef } from "react"
-import Globe from 'react-globe.gl'
-import * as THREE from '//unpkg.com/three/build/three.module.js'
-const ProfileContainer = styled.div`
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #394130;
-  width:100vw;
-  height:100vh;
-`
-const UserContainer = styled.div`
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  z-index: 2; 
-`
-const UserPFP = styled.img`
-  border-radius:50%;
-  width: 10vw;
-  height: 20vh;
-  background-color:#907359;
-  padding: 0.7vw;
-`
-const UserName = styled.p`
-  margin:0;
-  font-size: 4vw;
-  padding: 0;
-  color:#fff6de;
-  font-family:"Dosis", system-ui;
-  font-weight: 600;
-`
-const LinkIcons = styled(Link)`
-  color:#fff6de;
-  text-decoration:none;
-  &:hover{
-    color:#071f19;
-  }
-`
-const BGElipse = styled.div`
-  background-color: #ACAD94;
-  color: #ACAD94;
-  position: absolute;
-  width:95vw;
-  border-radius:50% 50% 35% 35%;
-  height:100vh;
-`
+import { useEffect, useState} from "react"
+
 const Main = styled.div`
   display:flex;
   font-family: 'Dosis';
@@ -64,13 +17,46 @@ const Main = styled.div`
     max-width: fit-content;
     margin-bottom: 0;
   }
+
 `
 const Dir = styled.div`
   width:50%;
   height: 90.88vh;
+  display:flex;
+  flex-direction: column;
+  justify-content:start;
+  align-items:center;
   h2{
-    font-size: 2.3em;
+    font-size: 3em;
   }
+
+`
+const DirContainer = styled.div`
+  display:flex;
+  align-items:center;
+  margin-top:4vh;
+`
+const MediaContainer = styled.div`
+  display:flex;
+  align-items:center;
+  margin-left: 2vw;
+  margin-bottom: 2.5vh;
+  h2{
+    margin-right:1vw;
+  }
+  *{
+  margin:0;
+  padding:0;
+  }
+`
+const TextContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+
+`
+const HText = styled.h2`
+  margin-bottom:0;
+  margin-top:10vh !important;
 `
 const Esq = styled.div`
   width:50%;
@@ -85,11 +71,12 @@ const WelcomeText = styled.div`
 `
 const Container = styled.main`
   background-color: #acad94;
-  canvas{
-    margin-left:12vw;
-    margin-top: 10vh;
-    max-width: fit-content;
-  }
+`
+const VazioTexto = styled.h1`
+  font-size: 3.25em;
+  text-align:center;
+  margin-left:2vw;
+  margin-top:20vh;
 `
 
 
@@ -98,6 +85,7 @@ export default function Profile() {
   const [cookies, setCookie, removeCookie] = useCookies(null)
   const [metal, setMetal] = useState(0)
   const [plastico, setPlastico] = useState(0)
+  const [vazio, setVazio] = useState(true)
   const [vidro, setVidro] = useState(0)
   const [papel, setPapel] = useState(0)
   const authToken = cookies.AuthToken
@@ -126,7 +114,15 @@ export default function Profile() {
 }
   useEffect(() => {
     getMaterials()
+    if(vidro === 0 && papel === 0 && plastico === 0 && metal === 0 ){
+      setVazio(true)
+    }
+    else{
+      setVazio(false)
+    }
   })
+
+
   
   return (
     <Container>
@@ -138,11 +134,33 @@ export default function Profile() {
             <h2>Vamos ver como esta sua <br/> jornada de reciclagem?</h2>
             <h1> Olha so quanto voce ja reciclou</h1>
           </WelcomeText>
-          <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/>
+          {!vazio ? <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/> : <VazioTexto>Ainda nao ha dados, vamos reciclar!</VazioTexto>}
         </Esq>
         <Dir>
-          <h2>Seu impacto no planeta</h2>
-          <World/>
+            <HText>Seu impacto no planeta</HText>
+          <DirContainer>
+            <EarthLogo/>
+            <TextContainer>
+            <MediaContainer>
+              <h2>75</h2>
+              <h3>Media de reciclagem
+              <h4>(media da populacao 20)</h4>
+              </h3>
+            </MediaContainer>
+            <MediaContainer>
+              <h2>75</h2>
+              <h3>Media de reciclagem
+              <h4>(media da populacao 20)</h4>
+              </h3>
+            </MediaContainer>
+            <MediaContainer>
+              <h2>75</h2>
+              <h3>Media de reciclagem
+              <h4>(media da populacao 20)</h4>
+              </h3>
+            </MediaContainer>
+            </TextContainer>
+          </DirContainer>
         </Dir>
       </Main>
     </Container>

@@ -38,7 +38,7 @@ const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
     }
   ];
   return (
-    <ResponsiveContainer width="55%" height="55%">
+    <ResponsiveContainer width="85%" height="60%">
       <BarChart
         width={200}
         height={2000}
@@ -46,7 +46,7 @@ const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
         margin={{
           left: 100,
           bottom: 25,
-          top: 35
+          top: 70
         }}
       >
         <XAxis tick={{fontSize: 30, fontFamily:'dosis', fontWeight:'bold', opacity:'1000', fill:'#071F19'}}dataKey="name" axisLine={false} tickLine={false} dy={20}/>

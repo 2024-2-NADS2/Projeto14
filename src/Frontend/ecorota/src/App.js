@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import Sign from "./pages/Sign"
+import Guide from './pages/Guide'
 import { useCookies } from "react-cookie"
 
 function App(){
@@ -19,6 +20,7 @@ function App(){
         <Route path="/" element={<Home/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/sign" element={<Sign/>}/>
+        <Route path="/guia" element={<Guide/>}/>
       </Routes>
     </Router>
     

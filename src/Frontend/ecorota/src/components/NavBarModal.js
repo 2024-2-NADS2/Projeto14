@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const ModalContents = styled(Link)`
@@ -22,10 +22,13 @@ const ModalContents = styled(Link)`
     }
 `
 export default function NavBarModal(){
+
+    const navigate = useNavigate()
+
     return(
         <ModalContents>
-            <i className="fa-solid fa-map"> Localizador </i>
-            <i className="fa-solid fa-recycle"> Guia </i>
+            <i className="fa-solid fa-map" onClick={navigate("/guia")}> Localizador </i>
+            <i className="fa-solid fa-recycle" > Guia </i>
             <i className="fa-solid fa-circle-info"> Sobre </i> 
         </ModalContents>
     )

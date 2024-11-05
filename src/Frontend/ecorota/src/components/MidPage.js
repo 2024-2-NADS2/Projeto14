@@ -125,7 +125,7 @@ export default function MidPage() {
       </BottomConnectionSteps>
       <TextContainer>
         <p>Nosso <LinkLocalizador>localizador</LinkLocalizador> te ajuda a encontrar o ponto de coleta mais próximo</p>
-        <p>Separe seu lixo corretamente e caso precise de ajuda acesse nosso  <LinkGuia>guia de reciclagem</LinkGuia></p>
+        <p>Separe seu lixo corretamente e caso precise de ajuda acesse nosso  <LinkGuia to="/guia">guia de reciclagem</LinkGuia></p>
         <p>Agora é só levar o seu lixo no ponto de coleta escolhido, e caminhe para um mundo melhor</p>
       </TextContainer>   
     </Main>
