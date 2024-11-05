@@ -11,78 +11,50 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const salesData = [
-  {
-    name: 'Jan',
-    revenue: 4000,
-    profit: 2400,
-  },
-  {
-    name: 'Feb',
-    revenue: 3000,
-    profit: 1398,
-  },
-  {
-    name: 'Mar',
-    revenue: 9800,
-    profit: 2000,
-  },
-  {
-    name: 'Apr',
-    revenue: 3908,
-    profit: 2780,
-  },
-  {
-    name: 'May',
-    revenue: 4800,
-    profit: 1890,
-  },
-  {
-    name: 'Jun',
-    revenue: 3800,
-    profit: 2390,
-  },
-];
 
-const BarChartComponent = () => {
+const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
+
+  console.log(plastico)
+  const materiais = [
+    {
+      "name": "Plastico",
+      "Quantidade": plastico,
+      fill: '#542929'
+    },
+    {
+      "name": "Vidro",
+      "Quantidade": vidro,
+      fill: '#3F4735'
+    },
+    {
+      "name": "Metal",
+      "Quantidade": metal,
+      fill: '#E7C590'
+    },
+    {
+      "name": "Papel",
+      "Quantidade": papel,
+      fill: '#505C69'
+    }
+  ];
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="55%" height="55%">
       <BarChart
-        width={500}
-        height={300}
-        data={salesData}
+        width={200}
+        height={2000}
+        data={materiais}
         margin={{
-          right: 30,
+          left: 100,
+          bottom: 25,
+          top: 35
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Bar dataKey="revenue" fill="#2563eb" />
-        <Bar dataKey="profit" fill="#8b5cf6" />
+        <XAxis tick={{fontSize: 30, fontFamily:'dosis', fontWeight:'bold', opacity:'1000', fill:'#071F19'}}dataKey="name" axisLine={false} tickLine={false} dy={20}/>
+        <Tooltip cursor={{fill:'transparent'}}/>
+        <Bar dataKey="Quantidade" fill="#394130" radius={[25, 25, 0, 0]}/>
       </BarChart>
     </ResponsiveContainer>
   );
 };
 
 export default BarChartComponent;
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="p-4 bg-slate-900 flex flex-col gap-4 rounded-md">
-        <p className="text-medium text-lg">{label}</p>
-        <p className="text-sm text-blue-400">
-          Revenue:
-          <span className="ml-2">${payload[0].value}</span>
-        </p>
-        <p className="text-sm text-indigo-400">
-          Profit:
-          <span className="ml-2">${payload[1].value}</span>
-        </p>
-      </div>
-    );
-  }
-};

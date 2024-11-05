@@ -150,7 +150,8 @@ const Login = () =>{
       else{
           setCookie('Email', data.email)
           setCookie('Name', data.name)
-          setCookie('AuthToken', data.token)        
+          setCookie('AuthToken', data.token)    
+          setCookie('User_id', data.id)       
           window.location.reload()  
       }
       

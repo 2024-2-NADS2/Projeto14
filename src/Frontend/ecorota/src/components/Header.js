@@ -80,6 +80,7 @@ export default function Header(){
         removeCookie('Email')
         removeCookie('AuthToken')
         removeCookie('Name')
+        removeCookie('User_id')
         
     }
     const [cookies, setCookie, removeCookie] = useCookies(null)
