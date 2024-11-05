@@ -88,7 +88,7 @@ export default function Header(){
     const location = useLocation()
     const navigate = useNavigate()
 
-    if(authToken){console.log(location)}
+
 
     return(
         <>

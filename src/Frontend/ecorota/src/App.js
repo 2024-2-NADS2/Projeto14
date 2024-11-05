@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import Sign from "./pages/Sign"
 import Guide from './pages/Guide'
+import Sobre from "./pages/Sobre"
 import { useCookies } from "react-cookie"
 
 function App(){
@@ -21,6 +22,7 @@ function App(){
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/sign" element={<Sign/>}/>
         <Route path="/guia" element={<Guide/>}/>
+        <Route path="/Sobre" element={<Sobre/>}/>
       </Routes>
     </Router>
     

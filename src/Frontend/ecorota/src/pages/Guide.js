@@ -32,6 +32,7 @@ const TextInformation = styled.div`
     display:flex;
     flex-direction: column;
     align-items:center;
+    font-weight: 450;
     svg{
         margin-bottom: 1vh;
     }

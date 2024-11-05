@@ -8,6 +8,7 @@ const LixeiraVerde = () => {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M83.1061 80C88.2358 85.5 111.034 92.5 123.574 93.5C142.657 95.022 168.763 95.1665 179.982 94.5011C179.994 94.3356 180 94.1685 180 94L180 87C180 83.134 176.866 80 173 80L83 80C83.037 80.0291 83.0699 80.0318 83.1061 80Z" fill="#41AE30"/>
 <rect width="123" height="48" rx="8" transform="matrix(-1 0 0 1 151 21)" fill="#0F0101"/>
 <path d="M167 124L13.0001 122.5L167 172L167 124Z" fill="#25681A"/>
+<text x="70" y="210" fill="#fff6de">Vidro</text>
 </svg>
 
     )

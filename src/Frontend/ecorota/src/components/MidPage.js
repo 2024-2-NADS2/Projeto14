@@ -27,10 +27,11 @@ const TextContainer = styled.div`
 
 `
 
-const LocationIcon = styled.i`
+const LocationIcon = styled(Link)`
   color:#fff6de;
   font-size:7.5vw;
   position:absolute;
+  text-decoration:none;
   left:19vw;
   top:128vh;
   cursor: pointer;
@@ -39,12 +40,13 @@ const LocationIcon = styled.i`
     transition: 0.15s ease-in;
   }
 `
-const RecycleIcon = styled.i`
+const RecycleIcon = styled(Link)`
   color:#fff6de;
   font-size:7.5vw;
   position:absolute;
   left:45.5vw;
   top:170vh;
+  text-decoration:none;
   cursor: pointer;
   &:hover{
     color: #071f19;
@@ -108,8 +110,8 @@ const LinkGuia = styled(Link)`
 export default function MidPage() {
   return (
     <Main>
-      <LocationIcon className="fa-solid fa-location-dot"/>
-      <RecycleIcon className="fa-solid fa-recycle"/>
+      <LocationIcon className="fa-solid fa-location-dot" to = {"/coletas"}/>
+      <RecycleIcon className="fa-solid fa-recycle" to = {"/guia"}/>
       <ConnectionSteps width="379" height="246" viewBox="0 0 379 246" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M372.899 5.82159C374.88 47.4142 366.832 90.1832 338.131 122.506C306.347 158.301 255.388 165.218 210.253 167.62C137.806 171.476 40.7664 162.283 5.03717 240.887" stroke="#FFF6DE" strokeWidth="10" strokeLinecap="round" strokeDasharray="16 25"/>
       </ConnectionSteps>
@@ -124,7 +126,7 @@ export default function MidPage() {
         <path d="M67.0842 5.01611C71.5107 40.9205 77.0463 75.8477 75.4395 112.161C72.9821 167.698 53.8356 215.71 27.642 264.277C11.7425 293.758 6.15867 322.89 5.27922 356.309C4.61554 381.529 12.7596 390.821 29.4851 407.547" stroke="#FFF6DE" strokeWidth="10" strokeLinecap="round" strokeDasharray="16 25"/>
       </BottomConnectionSteps>
       <TextContainer>
-        <p>Nosso <LinkLocalizador>localizador</LinkLocalizador> te ajuda a encontrar o ponto de coleta mais próximo</p>
+        <p>Nosso <LinkLocalizador to = {"/coletas"}>localizador</LinkLocalizador> te ajuda a encontrar o ponto de coleta mais próximo</p>
         <p>Separe seu lixo corretamente e caso precise de ajuda acesse nosso  <LinkGuia to="/guia">guia de reciclagem</LinkGuia></p>
         <p>Agora é só levar o seu lixo no ponto de coleta escolhido, e caminhe para um mundo melhor</p>
       </TextContainer>   
