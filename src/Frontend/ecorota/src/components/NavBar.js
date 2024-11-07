@@ -34,11 +34,21 @@ const Profile = styled(Link)`
         transition: 0.15s ease-in;
     }
 `
+const Admin = styled(Link)`
+    display: flex;
+    color: #FFF6DE;
+    text-decoration:none;
+    &:hover{
+        color: #071f19;
+        transition: 0.15s ease-in;
+    }
+`
 
 export default function NavBar(props){
     const {handleOpenModal} = props
     const [cookies, setCookie, removeCookie] = useCookies(null)
     const authToken = cookies.AuthToken
+    const userType = cookies.User_Type
     const location = useLocation()
     return(
         <NavContainer>
@@ -47,6 +57,7 @@ export default function NavBar(props){
                 <i className="fa-solid fa-signs-post"></i>
             </NavModal>
             {authToken && location.pathname !== "/profile" && <Profile to={'/profile'} className="fa-solid fa-user" ></Profile>}
+            {userType === 'admin' && <Admin to={'/admin'} className="fa-solid fa-lock-open"></Admin>}
         </NavContainer>
         
     )

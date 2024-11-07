@@ -9,14 +9,6 @@ import { useEffect, useState} from "react"
 const Main = styled.div`
   display:flex;
   font-family: 'Dosis';
-  h2{
-    max-width: fit-content;
-    margin-top: 0;
-  }
-    h1{
-    max-width: fit-content;
-    margin-bottom: 0;
-  }
 
 `
 const Dir = styled.div`
@@ -59,8 +51,7 @@ const HText = styled.h2`
   margin-top:10vh !important;
 `
 const Esq = styled.div`
-  width:50%;
-    height: 100%;
+  width:50vw;
 `
 const WelcomeText = styled.div`
   margin:0;
@@ -135,7 +126,6 @@ export default function Profile() {
             <h2>Vamos ver como esta sua <br/> jornada de reciclagem?</h2>
             <h1> Olha so quanto voce ja reciclou</h1>
           </WelcomeText>
-          <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/>
           {!vazio ? <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/> : <VazioTexto>Ainda nao ha dados, vamos reciclar!</VazioTexto>}
         </Esq>
         <Dir>

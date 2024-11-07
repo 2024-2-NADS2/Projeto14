@@ -132,7 +132,6 @@ const Login = () =>{
       e.preventDefault()
       if (!isLogin && password !== confirmPassword) {
         setError('Make sure passwords match!')
-
         return
       }
 
@@ -151,7 +150,8 @@ const Login = () =>{
           setCookie('Email', data.email)
           setCookie('Name', data.name)
           setCookie('AuthToken', data.token)    
-          setCookie('User_id', data.id)       
+          setCookie('User_Id', data.id)      
+          setCookie('User_Type', data.type) 
           window.location.reload()  
       }
       
