@@ -80,6 +80,8 @@ export default function Header(){
         removeCookie('Email')
         removeCookie('AuthToken')
         removeCookie('Name')
+        removeCookie('User_Id')
+        removeCookie('User_Type')
         
     }
     const [cookies, setCookie, removeCookie] = useCookies(null)
@@ -87,7 +89,7 @@ export default function Header(){
     const location = useLocation()
     const navigate = useNavigate()
 
-    if(authToken){console.log(location)}
+
 
     return(
         <>

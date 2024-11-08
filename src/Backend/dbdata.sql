@@ -13,14 +13,27 @@ INSERT INTO materiais(type) VALUES('vidro');
 INSERT INTO materiais(type) VALUES('metal');
 INSERT INTO materiais(type) VALUES('papel');
 
-CREATE TABLE recycleprofile (
-    recycle_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_id INT not null,
-    qntplastico BIGINT,
-    qntvidro BIGINT,
-    qntpapel BIGINT,
-    qntmetal BIGINT,
-    foreign key (user_id) references users (id)
+CREATE TABLE userprofile (
+    profile_email VARCHAR(255) PRIMARY KEY,
+    qntplastico BIGINT DEFAULT 0,
+    qntvidro BIGINT DEFAULT 0,
+    qntpapel BIGINT DEFAULT 0,
+    qntmetal BIGINT DEFAULT 0,
+    foreign key (profile_email) references users (user_email)
 );
 
-INSERT INTO recycleprofile (qntplastico, qntmetal, qntpapel, qntvidro, user_id) VALUES(10, 5, 10, 7, 21);
+INSERT INTO userprofile (qntplastico, qntmetal, profile_email) VALUES(10, 5, 'jb@test.com');
+
+
+CREATE TABLE ecopontos (
+    eco_id serial primary key,
+    name text,
+    materiais text,
+    address text,
+    telefone int,
+    CEP int,
+    geom geometry(Point, 4326)
+);
+
+
+SELECT * FROM ecopontos WHERE ST_DWithin(geom, ST_SetSRID(ST_GeomFromText('POINT(-43.63 -20.55)'), 4326), 1);

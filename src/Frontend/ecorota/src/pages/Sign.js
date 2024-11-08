@@ -121,7 +121,7 @@ const Login = () =>{
     const authToken = cookies.AuthToken
     const [confirmPassword, setConfirmPassword] = useState(null)
     const navigate = useNavigate();
-    console.log(cookies)
+
 
     const viewLogin = (status) => {
       setError(null)
@@ -132,7 +132,6 @@ const Login = () =>{
       e.preventDefault()
       if (!isLogin && password !== confirmPassword) {
         setError('Make sure passwords match!')
-        console.log('Make sure passwords match!')
         return
       }
 
@@ -141,7 +140,7 @@ const Login = () =>{
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({ email, password, name })
       })
-      console.log(email, password)
+
       
       const data = await response.json()
       if (data.detail) {
@@ -150,7 +149,9 @@ const Login = () =>{
       else{
           setCookie('Email', data.email)
           setCookie('Name', data.name)
-          setCookie('AuthToken', data.token)        
+          setCookie('AuthToken', data.token)    
+          setCookie('User_Id', data.id)      
+          setCookie('User_Type', data.type) 
           window.location.reload()  
       }
       
