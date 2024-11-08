@@ -85,22 +85,20 @@ app.post('/cadastro/ecopontos', async (req, res) => {
 
 // buscando api CEP ABERTO para pegar longitude e latitude do cep indicado
 
-app.get('/pesquisa/:cep', async(req, res) => {
+app.get('/pesquisa/:cep/:raio', async(req, res) => {
     const cep = req.params.cep
+    const raio = req.params.raio
     try{
-        const response = await fetch(`https://www.cepaberto.com/api/v3/cep?cep=${cep}`,{
-            method:'GET',
-            headers: { 'Authorization': 'Token token=658ce220adc99310ad8dbdbaccd015a3'}
-        })
+        const response = await fetch(`https://cep.awesomeapi.com.br/json/${cep}`)
+        
         const apiData = await response.json()
         if(!apiData){
             console.log(`Deu erro no if do APIDATA`)
         }else{
-            const lat = apiData.latitude
-            const long = apiData.longitude
-            console.log(apiData.latitude, apiData.longitude)
-            const getPontos = await pool.query(`SELECT * FROM ecopontos WHERE ST_DWithin(geom, ST_SetSRID(ST_GeomFromText('POINT(${long} ${lat})'), 4326),  1)`)
-            res.json({data : getPontos.rows})
+            const lat = apiData.lat
+            const lng = apiData.lng
+            const getPontos = await pool.query(`SELECT * FROM ecopontos WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography,  ${raio*1200})`)
+            res.json(getPontos.rows)
         }
 
     }catch(err){

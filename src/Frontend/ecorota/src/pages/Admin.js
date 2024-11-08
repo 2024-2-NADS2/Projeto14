@@ -40,22 +40,6 @@ const Admin = () => {
             body: JSON.stringify({ name, materiais, address, telefone, cep, lon, lat })
         })
     }
-
-    const getCep = async (e) => {
-        e.preventDefault()
-        try{
-            const getCepData = await fetch (`http://localhost:8001/pesquisa/${cep}`,{
-          method:'GET',
-          headers: { 'Content-Type' : 'application/json'},
-        })
-        const response = await getCepData.json()
-        console.log(response.data)
-      }catch(err){
-        console.error(err)
-      }
-
-    }
-
     return(
         <>
             <Header/>
@@ -69,12 +53,8 @@ const Admin = () => {
                     <input type="text" placeholder="LON" onChange={(e) => setLon(e.target.value)} />
                     <input type="text" placeholder="LAT" onChange={(e) => setLat(e.target.value)} />
                     <input type="submit" value="cadastrar" onClick={(e) => handleCommit(e)} />
+
                 </form>
-                <form>
-                    <input type="number" placeholder="CEP" onChange={(e) => setCep(e.target.value)} />  
-                    <input type="submit" value="CEP" onClick={(e) => getCep(e)} />
-                </form>
-                a
             </Main>
         </>
     )
