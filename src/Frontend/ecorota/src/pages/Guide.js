@@ -10,7 +10,7 @@ import LixeiraVermelha from '../components/LixeiraVermelha'
 const Main = styled.div`
     background-color: #fff6de;
     width:100%;
-    height: 100%;
+    height: 100vh;
     font-family: dosis;
     h2{
         font-weight: 550;
@@ -30,7 +30,7 @@ const BottomContainer = styled.div`
 `
 const TextInformation = styled.div`
     text-align: center;
-    font-size:1.20em;
+    font-size:1.5em;
     display:flex;
     flex-direction: column;
     align-items:center;

@@ -1,5 +1,7 @@
 import { useState } from "react"
+import MapaEcoPontos from "./MapaEcoPontos"
 import styled from "styled-components"
+import BuscaPontos from "./BuscaPontos"
 
 const Main = styled.div`
     display:flex;
@@ -9,7 +11,7 @@ const Main = styled.div`
     background-color: #acad94;
 `
 const BuscaContainer = styled.div`  
-  height:40vh;
+  height:55vh;
   width:20vw;
   display:flex;
   justify-content: center;
@@ -46,13 +48,13 @@ const FormBusca = styled.form`
 `
 const PontosColeta = styled.div`
   background-color:#907359;
-    height:40vh;
-  width:35vw;
+    height:55vh;
+  width:50vw;
   border-radius: 0px 20px 20px 0px;
   overflow: scroll;
 `
 const Container = styled.div`
-  margin-top:10vh;
+  margin-top:32vh;
   display:flex;
   justify-content: center;
 `
@@ -69,6 +71,8 @@ const ListaPontos = styled.li`
 export default function BottomPage() {
 
   const [cepPlaceholder, setCepPlaceholder] = useState(null)
+  const [latMap, setLatMap] = useState(null)
+  const [lngMap, setLngMap] = useState(null)
   const [ponto, setPonto] = useState(null)
   const [raioBusca, setRaioBusca] = useState(1)
   const getCep = async (e) => {
@@ -79,7 +83,9 @@ export default function BottomPage() {
       headers: { 'Content-Type' : 'application/json'},
     })
     const response = await getCepData.json()
-    setPonto(response)
+    setPonto(response.data)
+    setLatMap(response.lat)
+    setLngMap(response.lng)
   }catch(err){
     console.error(err)
   }
@@ -88,11 +94,12 @@ console.log(raioBusca)
   return (
     <Main>
       <Container>
-      <BuscaContainer>
+        <BuscaPontos/>
+      {/* <BuscaContainer>
         <FormBusca>
           <BuscaCep
           required
-          minLength={8}
+          minLength={0}
           maxLength={8}
           type="number"
           placeholder="DIGITE SEU CEP"
@@ -116,8 +123,9 @@ console.log(raioBusca)
         </FormBusca>
       </BuscaContainer>
       <PontosColeta>
+        <MapaEcoPontos ponto={ponto} latMap={latMap} lngMap={lngMap}/>
         {ponto?.map((ponto) => <ListaPontos key={ ponto.eco_id }>{[ ponto.name,<br/>,<br/>,  ponto.address,<br/>,<br/>, ponto.materiais ]}<br/><br/><br/></ListaPontos>)}
-      </PontosColeta>
+      </PontosColeta> */}
       </Container>
     </Main>
   )

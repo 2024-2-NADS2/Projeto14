@@ -6,6 +6,7 @@ import Sign from "./pages/Sign"
 import Guide from './pages/Guide'
 import Sobre from "./pages/Sobre"
 import Coletas from "./pages/Coletas"
+import RegistroColetas from "./pages/RegistroColetas"
 import Admin from "./pages/Admin"
 
 function App(){
@@ -26,6 +27,7 @@ function App(){
         <Route path="/guia" element={<Guide/>}/>
         <Route path="/sobre" element={<Sobre/>}/>
         <Route path="/coletas" element={<Coletas/>}/>
+        <Route path="/coletas/registro" element={<RegistroColetas/>}/>
         <Route path="/admin" element={<Admin/>}/>
       </Routes>
     </Router>

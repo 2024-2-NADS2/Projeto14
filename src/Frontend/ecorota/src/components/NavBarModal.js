@@ -12,6 +12,7 @@ const ModalContents = styled(Link)`
     font-size: 2.5vh;
     text-decoration: none;
     position: absolute;
+    z-index:999;
     right: 4.5vw;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;

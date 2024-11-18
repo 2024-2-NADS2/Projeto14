@@ -6,6 +6,7 @@ const app = express()
 const pool = require('./db')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const opencage = require('opencage-api-client')
 app.use(cors())
 app.use(express.json())
 
@@ -97,31 +98,28 @@ app.get('/pesquisa/:cep/:raio', async(req, res) => {
         }else{
             const lat = apiData.lat
             const lng = apiData.lng
-            const getPontos = await pool.query(`SELECT * FROM ecopontos WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography,  ${raio*1200})`)
-            res.json(getPontos.rows)
+            const getPontos = await pool.query(`SELECT eco_id, name, address, materiais, ST_X (ST_Transform (geom, 4326)) AS lng,
+       ST_Y (ST_Transform (geom, 4326)) AS lat FROM ecopontos WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography,  ${raio*1300})`)
+            res.json({ 'data' : getPontos.rows })
+
         }
 
     }catch(err){
             console.error(err)
         }
-
 })
-// const headers = {'Authorization': 'Token token=658ce220adc99310ad8dbdbaccd015a3'}
-// const url = 'https://www.cepaberto.com/api/v3/cep?cep=04367060'
-// const getApi = async () => {
-//     try{
-//         const response = await fetch(url,{
-//             method:'GET',
-//             headers: { 'Authorization': 'Token token=658ce220adc99310ad8dbdbaccd015a3'}
-//         })
-//         const json = await response.json()
-//         console.log(json.latitude)
-//         console.log(json.longitude)
-//     }catch(err){
-//         console.error(err)
-//     }
-// }
-// getApi()
+
+
+    app.get(`/teste/google`, async(req, res) => {
+        try{
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Av+Santa+Catarina+1225,+Vila+Mascote&key=${process.env.GOOGLE_API_KEY}`)
+            const googleData = await response.json()
+            res.json(googleData.results[0])
+        }catch(err){
+            console.error(err)
+        }
+        
+    })
 
 
 
