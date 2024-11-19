@@ -110,7 +110,7 @@ export default function Profile() {
   }
   const getMaterials = async () => {
 
-    try{const getData = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/profile/${cookies.Email}`,{
+    try{const getData = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/profile/${cookies.Email}`,{
       method:'GET',
       headers: { 'Content-Type' : 'application/json'},
     })
@@ -139,7 +139,7 @@ export default function Profile() {
   const handleErase = async () => {
 
     window.location.reload()
-    const erase = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/coletas/apagar/${cookies.Email}`,{
+    const erase = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/coletas/apagar/${cookies.Email}`,{
       method:'POST',
       headers: { 'Content-Type' : 'application/json'},
     })

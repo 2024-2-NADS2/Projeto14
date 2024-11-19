@@ -38,7 +38,7 @@ const Admin = () => {
     const handleCommit = async (e) => {
 
         
-        const post = await fetch ('https://projeto14-fork-728609929656.southamerica-east1.run.app/cadastro/ecopontos',{
+        const post = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/ecopontos/cadastro/ecopontos`,{
             method:'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({ name, materiais, address, telefone, cep, lon, lat })
