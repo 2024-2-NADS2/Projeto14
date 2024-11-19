@@ -135,7 +135,7 @@ const Login = () =>{
         return
       }
 
-      const response = await fetch (`http://localhost:8001/${endpoint}`,{
+      const response = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/${endpoint}`,{
         method:'POST',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({ email, password, name })

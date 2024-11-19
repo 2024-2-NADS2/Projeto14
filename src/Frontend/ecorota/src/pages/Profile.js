@@ -110,7 +110,7 @@ export default function Profile() {
   }
   const getMaterials = async () => {
 
-    try{const getData = await fetch (`http://localhost:8001/profile/${cookies.Email}`,{
+    try{const getData = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/profile/${cookies.Email}`,{
       method:'GET',
       headers: { 'Content-Type' : 'application/json'},
     })
