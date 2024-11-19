@@ -3,11 +3,12 @@ require('dotenv').config()
 const cors = require('cors')
 const pool = require('./config/db')
 const authRoutes = require('./routes/AuthRoutes')
-PORT = process.env.PORT || 8080
+PORT = process.env.PORT
 app.use(cors())
 app.use(express.json())
 
 
+app.use('/auth', authRoutes)
 
 
 // dados de reciclagem 
@@ -110,7 +111,6 @@ app.get('/pesquisa/:cep/:raio', async(req, res) => {
         
     })
     //Route para login e cadastro
-    app.use('/auth', authRoutes)
     
     
 app.listen(PORT, () => {
