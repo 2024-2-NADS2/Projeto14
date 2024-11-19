@@ -1,7 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const cors = require('cors')
-const pool = require('./db')
+const pool = require('../Backend/config/db')
 const bcrypt = require('bcryptjs')
 const authRoutes = require('./routes/AuthRoutes')
 const PORT = process.env.PORT
