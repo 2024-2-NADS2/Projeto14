@@ -1,10 +1,9 @@
 const express = require('express')
 require('dotenv').config()
 const cors = require('cors')
-const pool = require('../Backend/config/db')
-const bcrypt = require('bcryptjs')
+const pool = require('./config/db')
 const authRoutes = require('./routes/AuthRoutes')
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8000
 app.use(cors())
 app.use(express.json())
 
