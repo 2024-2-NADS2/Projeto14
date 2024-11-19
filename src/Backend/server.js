@@ -24,6 +24,9 @@ app.get('/profile/:email', async (req, res) => {
         console.error(err)
     }
 })
+app.get('/', (req,res) => {
+    res.send('Hello World!')
+})
 //cadastrando coletas do usuario
 
     app.post('/coletas/cadastro/:email', async(req, res) => {
