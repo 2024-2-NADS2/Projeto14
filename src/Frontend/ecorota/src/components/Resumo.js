@@ -128,7 +128,7 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
     const handleCommit = async (e) => {
 
         
-        const post = await fetch (`http://localhost:8001/coletas/cadastro/${cookies.Email}`,{
+        const post = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/coletas/cadastro/${cookies.Email}`,{
             method:'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({ papel, plastico, metal, vidro })

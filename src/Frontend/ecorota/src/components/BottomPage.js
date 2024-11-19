@@ -70,27 +70,7 @@ const ListaPontos = styled.li`
 
 export default function BottomPage() {
 
-  const [cepPlaceholder, setCepPlaceholder] = useState(null)
-  const [latMap, setLatMap] = useState(null)
-  const [lngMap, setLngMap] = useState(null)
-  const [ponto, setPonto] = useState(null)
-  const [raioBusca, setRaioBusca] = useState(1)
-  const getCep = async (e) => {
-    e.preventDefault()
-    try{
-        const getCepData = await fetch (`http://localhost:8001/pesquisa/${cepPlaceholder}/${raioBusca}`,{
-      method:'GET',
-      headers: { 'Content-Type' : 'application/json'},
-    })
-    const response = await getCepData.json()
-    setPonto(response.data)
-    setLatMap(response.lat)
-    setLngMap(response.lng)
-  }catch(err){
-    console.error(err)
-  }
-}
-console.log(raioBusca)
+
   return (
     <Main>
       <Container>
