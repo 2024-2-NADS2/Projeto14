@@ -3,7 +3,7 @@ require('dotenv').config()
 const cors = require('cors')
 const pool = require('./config/db')
 const authRoutes = require('./routes/AuthRoutes')
-const PORT = process.env.PORT || 8080
+PORT = process.env.PORT || 8080
 app.use(cors())
 app.use(express.json())
 
