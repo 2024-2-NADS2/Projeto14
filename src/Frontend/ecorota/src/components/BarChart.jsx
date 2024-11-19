@@ -29,7 +29,7 @@ const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
     {
       "name": "Metal",
       "Quantidade": metal,
-      fill: '#E7C590'
+      fill: '#C2A12B'
     },
     {
       "name": "Papel",
@@ -40,7 +40,7 @@ const BarChartComponent = ({ plastico, vidro, metal, papel }) => {
   return (
       <BarChart
         width={600}
-        height={330}
+        height={500}
         data={materiais}
         margin={{
           left: 100,

@@ -37,3 +37,8 @@ CREATE TABLE ecopontos (
 
 
 SELECT * FROM ecopontos WHERE ST_DWithin(geom, ST_SetSRID(ST_GeomFromText('POINT(-43.63 -20.55)'), 4326), 1);
+
+INSERT INTO userprofile (profile_email, qntplastico, qntvidro, qntpapel, qntmetal)
+VALUES ('jb2@test.com', 5, 5, 5, 5)
+ON CONFLICT (profile_email)
+DO UPDATE SET profile_email = excluded.profile_email , qntplastico = userprofile.qntplastico+5 , qntvidro =  userprofile.qntvidro + 5, qntpapel = userprofile.qntpapel + 5, qntmetal= userprofile.qntmetal + 5;

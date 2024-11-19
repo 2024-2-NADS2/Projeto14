@@ -13,7 +13,6 @@ const Main = styled.div`
 `
 const Dir = styled.div`
   width:50%;
-  height: 100%;
   display:flex;
   flex-direction: column;
   justify-content:start;
@@ -26,7 +25,7 @@ const Dir = styled.div`
 const DirContainer = styled.div`
   display:flex;
   align-items:center;
-  margin-top:4vh;
+  margin-top:6vh;
 `
 const MediaContainer = styled.div`
   display:flex;
@@ -40,6 +39,9 @@ const MediaContainer = styled.div`
   margin:0;
   padding:0;
   }
+  h3{
+    font-size:1.7em
+  }
 `
 const TextContainer = styled.div`
   display:flex;
@@ -48,10 +50,30 @@ const TextContainer = styled.div`
 `
 const HText = styled.h2`
   margin-bottom:0;
-  margin-top:10vh !important;
+  margin-top:20vh !important;
 `
 const Esq = styled.div`
   width:50vw;
+  height: fit-content;
+  button{
+    position: absolute;
+    top:85vh;
+    right:55vw;
+    border:none;
+    background-color: #8E9F7B;
+    font-family: dosis;
+    font-weight: bold;
+    color: #542929;
+    font-size: 1.3em;
+    border-radius: 12px;
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
+  }
+  button:hover{
+    background-color: #542929;
+    color: #fff6de;
+    cursor: pointer;
+  }
 `
 const WelcomeText = styled.div`
   margin:0;
@@ -114,6 +136,15 @@ export default function Profile() {
     }
   })
 
+  const handleErase = async () => {
+
+    window.location.reload()
+    const erase = await fetch (`http://localhost:8001/coletas/apagar/${cookies.Email}`,{
+      method:'POST',
+      headers: { 'Content-Type' : 'application/json'},
+    })
+
+  }
 
   
   return (
@@ -127,6 +158,7 @@ export default function Profile() {
             <h1> Olha so quanto voce ja reciclou</h1>
           </WelcomeText>
           {!vazio ? <BarChart vidro={vidro} plastico={plastico} metal={metal} papel={papel}/> : <VazioTexto>Ainda nao ha dados, vamos reciclar!</VazioTexto>}
+          <button onClick={() => handleErase()}>Apagar dados de coleta</button>
         </Esq>
         <Dir>
             <HText>Seu impacto no planeta</HText>
@@ -134,21 +166,19 @@ export default function Profile() {
             <EarthLogo/>
             <TextContainer>
             <MediaContainer>
-              <h2>75</h2>
-              <h3>Media de reciclagem
-              <h4>(media da populacao 20)</h4>
+              <h2>70%</h2><br/>
+              <h3>Dos brasileiros não reciclam
               </h3>
             </MediaContainer>
             <MediaContainer>
-              <h2>75</h2>
-              <h3>Media de reciclagem
-              <h4>(media da populacao 20)</h4>
+              <h2>77%</h2>
+              <h3>Não recicla da forma correta
               </h3>
             </MediaContainer>
             <MediaContainer>
-              <h2>75</h2>
-              <h3>Media de reciclagem
-              <h4>(media da populacao 20)</h4>
+              <h2>04%</h2>
+              <h3>São quem fazem parte 
+              <h4>de uma onda de mudança e reciclam corretamente</h4>
               </h3>
             </MediaContainer>
             </TextContainer>
