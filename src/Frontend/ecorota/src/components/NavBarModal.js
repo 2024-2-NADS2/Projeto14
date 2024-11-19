@@ -12,6 +12,7 @@ const ModalContents = styled(Link)`
     font-size: 2.5vh;
     text-decoration: none;
     position: absolute;
+    z-index:999;
     right: 4.5vw;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -32,7 +33,7 @@ export default function NavBarModal(){
     const location = useLocation()
     return(
         <ModalContents>
-            {location.pathname !== "/localizador" && <Icons className="fa-solid fa-map" to = {"/coletas"}> Localizador </Icons>}
+            {location.pathname !== "/localizador" && <Icons className="fa-solid fa-map" to = {"/coletas"}> COLETAS </Icons>}
             {location.pathname !== "/guia" && <Icons className="fa-solid fa-recycle" to = {"/guia"} > Guia </Icons>}
             {location.pathname !== "/sobre" && <Icons className="fa-solid fa-circle-info" to = {"/sobre"}> Sobre </Icons>} 
         </ModalContents>

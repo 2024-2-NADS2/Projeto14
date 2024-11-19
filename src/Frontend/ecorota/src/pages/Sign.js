@@ -94,7 +94,7 @@ const Logo = styled(Link)`
 
 `
 const SignUpText = styled.h1`
-    color:#acad94;
+    color:#fff6de;
     margin-left:50%;
     font-size: 7.5vh;
     text-align:center;
@@ -172,7 +172,7 @@ const Login = () =>{
                 <UserEmail type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                 <UserPassword type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)}/> 
                 {!isLogin && <UserPassword type="password" placeholder="Confirmar senha" onChange={(e) => setConfirmPassword(e.target.value)}/>}
-                {isLogin ? <SignUpButton type="submit" value="LOGIN" onClick={(e) => handleSubmit(e,'login')}/> : <SignUpButton type="submit" value="CADASTRE-SE" onClick={(e) => handleSubmit(e,'signup')}/>}
+                {isLogin ? <SignUpButton type="submit" value="Login" onClick={(e) => handleSubmit(e,'login')}/> : <SignUpButton type="submit" value="Cadastre-se" onClick={(e) => handleSubmit(e,'signup')}/>}
                 {error && <p>{error}</p>}
             </LoginContainer>
             {isLogin ? <p>Ainda não tem uma conta? Cadastre-se <ConfirmationLink onClick={() => viewLogin(false)}>aqui!</ConfirmationLink></p> : <p>Ja esta cadastrado? Clique <ConfirmationLink onClick={() => viewLogin(true)}>aqui!</ConfirmationLink></p>}
