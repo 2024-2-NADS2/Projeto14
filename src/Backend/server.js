@@ -1,4 +1,3 @@
-const express = require('express')
 require('dotenv').config()
 const cors = require('cors')
 const app = express()
@@ -6,6 +5,7 @@ const pool = require('./config/db')
 const authRoutes = require('./routes/AuthRoutes')
 const ecoPontoRoutes = require('./routes/EcoPontoRoutes')
 const materialDataRoutes = require('./routes/MaterialDataRoutes')
+const express = require('express')
 PORT = process.env.PORT
 app.use(cors())
 app.use(express.json())

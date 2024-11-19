@@ -29,6 +29,7 @@ exports.eraseUserMaterialsData = async (req, res) => {
     const profile_email = req.params.email
     try{
         const erase = await pool.query(`DELETE from userprofile WHERE profile_email = '${profile_email}'`)
+        res.status(201).json({'responseStatus' : 201})
     }catch(err){
         console.error(err)
     }

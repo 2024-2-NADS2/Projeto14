@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import BarChart from '../components/BarChart'
 import Header from "../components/Header"
 import { useEffect, useState} from "react"
+import { useApiUrl } from "../context/ApiContext"
 
 const Main = styled.div`
   display:flex;
@@ -108,9 +109,11 @@ export default function Profile() {
   if(!authToken){
     navigate("/")
   }
+  const apiUrl = useApiUrl()
+
   const getMaterials = async () => {
 
-    try{const getData = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/profile/${cookies.Email}`,{
+    try{const getData = await fetch (`${apiUrl}/materiais/profile/${cookies.Email}`,{
       method:'GET',
       headers: { 'Content-Type' : 'application/json'},
     })
@@ -138,12 +141,16 @@ export default function Profile() {
 
   const handleErase = async () => {
 
-    window.location.reload()
-    const erase = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/coletas/apagar/${cookies.Email}`,{
-      method:'POST',
-      headers: { 'Content-Type' : 'application/json'},
-    })
-
+    try{
+      const erase = await fetch (`${apiUrl}/materiais/coletas/apagar/${cookies.Email}`,{
+        method:'POST',
+        headers: { 'Content-Type' : 'application/json'},
+      })
+      const responseErase = await erase.json()
+      if(responseErase){window.location.reload()}
+    }catch(err){
+      console.error(err)
+    }
   }
 
   
