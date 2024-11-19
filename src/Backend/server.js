@@ -1,14 +1,14 @@
 const express = require('express')
 require('dotenv').config()
-PORT = process.env.PORT || 8000
 const cors = require('cors')
 const app = express()
-const pool = require('./db')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const opencage = require('opencage-api-client')
+const authRoutes = require('./routes/AuthRoutes')
+const PORT = process.env.PORT
 app.use(cors())
 app.use(express.json())
+
+//Route para login e cadastro
+app.use('/auth', authRoutes)
 
 // dados de reciclagem 
 
@@ -58,49 +58,49 @@ app.post (`/coletas/apagar/:email`, async (req, res) => {
 
 // cadastro
 
-app.post('/signup', async (req, res) => {
-    const {name, email, password} = req.body
-    const salt =  await bcrypt.genSaltSync(10)
-    const hashedPassword = bcrypt.hashSync(password, salt)
-    try{
-        const signup = await pool.query('INSERT INTO users (user_email, user_name, user_password) VALUES($1, $2, $3)',[email, name, hashedPassword])
+// app.post('/signup', async (req, res) => {
+//     const {name, email, password} = req.body
+//     const salt =  await bcrypt.genSaltSync(10)
+//     const hashedPassword = bcrypt.hashSync(password, salt)
+//     try{
+//         const signup = await pool.query('INSERT INTO users (user_email, user_name, user_password) VALUES($1, $2, $3)',[email, name, hashedPassword])
 
-        const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' })
+//         const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' })
 
-        const userId = await pool.query('SELECT id, type FROM users WHERE user_email = $1', [email])
+//         const userId = await pool.query('SELECT id, type FROM users WHERE user_email = $1', [email])
 
-        res.json({ email, token, name, 'id': userId.rows[0].id  })
-    }catch(err){
-        console.error(err)
-        if(err) {
-            res.json({ detail: err.detail })
-        }
-    }
-})
+//         res.json({ email, token, name, 'id': userId.rows[0].id  })
+//     }catch(err){
+//         console.error(err)
+//         if(err) {
+//             res.json({ detail: err.detail })
+//         }
+//     }
+// })
 
-// login 
+// // login 
 
 
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body
-    try{
-        const users = await pool.query('SELECT * FROM users WHERE user_email = $1', [email])
+// app.post('/login', async (req, res) => {
+//     const { email, password } = req.body
+//     try{
+//         const users = await pool.query('SELECT * FROM users WHERE user_email = $1', [email])
 
-        if (!users.rows.length) return res.json({ detail: 'User does not exist'})
+//         if (!users.rows.length) return res.json({ detail: 'User does not exist'})
 
-        const success = await bcrypt.compare(password, users.rows[0].user_password)
-        const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' })
+//         const success = await bcrypt.compare(password, users.rows[0].user_password)
+//         const token = jwt.sign({ email }, 'secret', { expiresIn: '1hr' })
 
-        if(success){
-            res.json({ 'email': users.rows[0].user_email, token, 'name': users.rows[0].user_name, 'id': users.rows[0].id, 'type': users.rows[0].type} )
-        }
-        else{
-            res.json({ detail: 'Login failed' })
-        }
-    }catch(err){
-        console.error(err)
-    }
-})
+//         if(success){
+//             res.json({ 'email': users.rows[0].user_email, token, 'name': users.rows[0].user_name, 'id': users.rows[0].id, 'type': users.rows[0].type} )
+//         }
+//         else{
+//             res.json({ detail: 'Login failed' })
+//         }
+//     }catch(err){
+//         console.error(err)
+//     }
+// })
 
 
 // utilizando API pra lancar ecopontos no banco de dados
