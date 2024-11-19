@@ -134,9 +134,11 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
             body: JSON.stringify({ papel, plastico, metal, vidro })
         })
         const resJson = await post.json()
+        console.log(resJson)
         if(resJson.status === 201){
-            setSucesso(true)
+            notify()
         }
+        
         
     }
 
@@ -185,7 +187,7 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
                     </TextoDiv>
                     <ButtonDiv>
                         <SalvarButton onClick={() => {handleResumo(); handleReset()}}>Voltar</SalvarButton>
-                        <SalvarButton onClick={() => {handleCommit(); notify(); handleResumo()}}>Confimar</SalvarButton>
+                        <SalvarButton onClick={() => {handleCommit(); setTimeout(() => {handleResumo()}, 6000)}}>Confimar</SalvarButton>
                     </ButtonDiv>
                 </div>
                         <ToastContainer />
