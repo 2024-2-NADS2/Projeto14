@@ -81,7 +81,7 @@ const BuscaPontos = () => {
     const getCep = async (e) => {
       e.preventDefault()
       try{
-          const getCepData = await fetch (`http://localhost:8001/pesquisa/${cepPlaceholder}/${raioBusca}`,{
+          const getCepData = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/pesquisa/${cepPlaceholder}/${raioBusca}`,{
         method:'GET',
         headers: { 'Content-Type' : 'application/json'},
       })

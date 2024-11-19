@@ -139,7 +139,7 @@ export default function Profile() {
   const handleErase = async () => {
 
     window.location.reload()
-    const erase = await fetch (`http://localhost:8001/coletas/apagar/${cookies.Email}`,{
+    const erase = await fetch (`https://projeto14-fork-728609929656.southamerica-east1.run.app/coletas/apagar/${cookies.Email}`,{
       method:'POST',
       headers: { 'Content-Type' : 'application/json'},
     })
