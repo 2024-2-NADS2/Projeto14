@@ -33,7 +33,7 @@ export default function NavBarModal(){
     const location = useLocation()
     return(
         <ModalContents>
-            {location.pathname !== "/localizador" && <Icons className="fa-solid fa-map" to = {"/coletas"}> Localizador </Icons>}
+            {location.pathname !== "/localizador" && <Icons className="fa-solid fa-map" to = {"/coletas"}> COLETAS </Icons>}
             {location.pathname !== "/guia" && <Icons className="fa-solid fa-recycle" to = {"/guia"} > Guia </Icons>}
             {location.pathname !== "/sobre" && <Icons className="fa-solid fa-circle-info" to = {"/sobre"}> Sobre </Icons>} 
         </ModalContents>

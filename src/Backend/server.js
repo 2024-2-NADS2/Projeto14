@@ -24,6 +24,35 @@ app.get('/profile/:email', async (req, res) => {
         console.error(err)
     }
 })
+//cadastrando coletas do usuario
+
+    app.post('/coletas/cadastro/:email', async(req, res) => {
+        const profile_email = req.params.email
+        const { papel, plastico, metal, vidro } = req.body
+        try{
+            const data = await pool.query(`INSERT INTO userprofile (profile_email, qntplastico, qntvidro, qntpapel, qntmetal)
+                                            VALUES ('${profile_email}', ${Number(plastico)}, ${Number(vidro)}, ${Number(papel)}, ${Number(metal)})
+                                            ON CONFLICT (profile_email)
+                                            DO UPDATE SET profile_email = excluded.profile_email , qntplastico = userprofile.qntplastico+${Number(plastico)} , qntvidro =  userprofile.qntvidro + ${Number(vidro)}, qntpapel = userprofile.qntpapel + ${Number(papel)}, qntmetal= userprofile.qntmetal + ${Number(metal)};`)
+            res.status(201).json({ message: 'Coleta feita com sucesso', status: 201})
+        }catch(err){
+            console.error(err)
+        }
+    })
+
+
+// apagar dados de coleta 
+
+app.post (`/coletas/apagar/:email`, async (req, res) => {
+
+    const profile_email = req.params.email
+    try{
+        const erase = await pool.query(`DELETE from userprofile WHERE profile_email = '${profile_email}'`)
+    }catch(err){
+        console.error(err)
+    }
+})
+
 // cadastro
 
 app.post('/signup', async (req, res) => {
@@ -120,7 +149,6 @@ app.get('/pesquisa/:cep/:raio', async(req, res) => {
         }
         
     })
-
 
 
 app.listen(PORT, () => {

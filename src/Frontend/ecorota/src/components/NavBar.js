@@ -56,7 +56,7 @@ export default function NavBar(props){
                 <NavArrow className="fa-solid fa-chevron-down"></NavArrow>
                 <i className="fa-solid fa-signs-post"></i>
             </NavModal>
-            {authToken && location.pathname !== "/profile" && <Profile to={'/profile'} className="fa-solid fa-user" ></Profile>}
+            {authToken && location.pathname !== "/profile" && <Profile to={'/perfil'} className="fa-solid fa-user" ></Profile>}
             {userType === 'admin' && <Admin to={'/admin'} className="fa-solid fa-lock-open"></Admin>}
         </NavContainer>
         

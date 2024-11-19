@@ -1,12 +1,14 @@
 import styled from "styled-components"
 import Header from "../components/Header"
+import Resumo from "../components/Resumo"
 import { useEffect, useState } from "react"
 
 const Main = styled.main`
     position: absolute;
     background-color: #fff6de;
+    height: 87%;
     width:100vw;
-    top:18vh;
+    top:13vh;
     border-radius: 65px 65px 0px 0px;
     font-family: dosis;
 
@@ -20,6 +22,7 @@ const TextoDiv = styled.div`
     
     h3{
         font-weight: 400;
+        margin-bottom: 0;
     }
 `
 const FormsDiv = styled.div`
@@ -50,8 +53,12 @@ const Material = styled.input`
     border-radius: 5px;
     border: none;
     background-color: #fff6de;
+    &::placeholder{
+        color: #394130;
+        }
     &:focus{
         text-decoration: none;
+    }
 `
 const SpanDiv = styled.div`
     background-color: #9D9580;
@@ -84,9 +91,6 @@ const InputDiv = styled.div`
     font-size: 1.05em;
     justify-content: space-between;
     color: #394130;
-    i{
-        cursor:pointer;
-    }
 `
 const InputTexto = styled.div`
     text-align: center;
@@ -97,6 +101,45 @@ const InputTexto = styled.div`
     justify-content: space-around;
     align-items: center;
 `
+const SalvarButton = styled.button`
+    text-decoration: none;
+    border: none;
+    text-algn: center;
+    background-color: #ACAD94;
+    font-family: dosis;
+    padding: 15px 80px 15px 80px;
+    font-size: 2em;
+    border-radius: 15px;
+    color: #fff6de;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover{
+        background-color: #58634B;
+    }
+`
+const BottomDiv = styled.div`
+    margin-top: 5vh;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+`
+const PlasticoP = styled.p`
+   background-color: #542929 !important; 
+`
+const MetalP = styled.p`
+    background-color: #C2A12B !important; 
+`
+const VidroP = styled.p`
+    background-color: #3F4734 !important; 
+`
+const PapelP = styled.p`
+    background-color: #505C69 !important; 
+`
+
+
+
+
+
 const RegistroColetas = () => {
 
     
@@ -107,7 +150,7 @@ const RegistroColetas = () => {
     const [metalOutros, setMetalOutros] = useState(0)
     const [metalPregos, setMetalPregos] = useState(0)
     
-    
+  
     const [vidro, setVidro] = useState(0)
     const [vidroEmbalagem, setVidroEmbalagem] = useState(0)
     const [vidroCopos, setVidroCopos] = useState(0)
@@ -130,6 +173,40 @@ const RegistroColetas = () => {
     const [papelCartolina, setPapelCartolina] = useState(0)
     const [papelOutros, setPapelOutros] = useState(0)
 
+
+    const [shownResumo, setShownResumo] = useState(false)
+
+    const handleResumo = () => { 
+        if(shownResumo === true){setShownResumo(false)}
+        else{setShownResumo(true)} 
+    }
+    const handleReset = () => {
+
+        setPapelOutros(0)
+        setPapelCartolina(0)
+        setPapelCaderno(0)
+        setPapelPizza(0)
+        setPapelJornal(0)
+
+        setPlasticoOutros(0)
+        setPlasticoCano(0)
+        setPlasticoTampinha(0)
+        setPlasticoPequeno(0)
+        setPlasticoGrande(0)
+
+        setVidroOutros(0)
+        setVidroPotes(0)
+        setVidroRemedio(0)
+        setVidroCopos(0)
+        setVidroEmbalagem(0)
+
+        setMetalLata(0)
+        setMetalCano(0)
+        setMetalTampa(0)
+        setMetalOutros(0)
+        setMetalPregos(0)
+
+    }
     useEffect(() => {
         setPlastico((plasticoCano * 4) + Number(plasticoOutros) + (plasticoPequeno * 2) + (plasticoGrande * 3) + (plasticoTampinha * 2))
         setVidro((vidroPotes * 4) + Number(vidroOutros) + (vidroCopos * 2) + (vidroEmbalagem * 3) + (vidroRemedio * 2))
@@ -138,59 +215,65 @@ const RegistroColetas = () => {
       },);
 
     console.log(Number(plastico + vidro + papel + metal))
-    // console.log(vidro)
-    // console.log(metal)
-    // console.log(papel)
+
+
+
 
     return(
-        <>
+        
+            <>
             <Header/>
             <SpanDiv><br/></SpanDiv>
-            <Main>
+            {!shownResumo && <Main>
                 <TextoDiv>
                     <h1>Registro de Coleta</h1>
                     <h3>Adicione os materiais que você coletou, <br/>depois salve seu registro :)</h3>
                 </TextoDiv>
                 <FormsDiv>
                     <FormContainer>
-                        <p>Plastico</p>
+                        <PlasticoP>Plastico</PlasticoP>
                         <FormCadastro>
                             <InputDiv>
                                 Cano PVC <InputTexto>
-                                <i className="fa-solid fa-plus"/>4<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPlasticoCano(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Garrafa Grande <InputTexto>
-                                <i className="fa-solid fa-plus"/>3<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPlasticoGrande(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Garrafa Pequena <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPlasticoPequeno(e.target.value )}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Tampinha <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPlasticoTampinha(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Outros <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPlasticoOutros(e.target.value)}
                                     />
                                 </InputTexto>
@@ -198,44 +281,49 @@ const RegistroColetas = () => {
                         </FormCadastro>
                     </FormContainer>
                     <FormContainer>
-                        <p>Metal</p>
+                        <MetalP>Metal</MetalP>
                         <FormCadastro>
                             <InputDiv>
                                 Canos de Metal <InputTexto>
-                                <i className="fa-solid fa-plus"/>4<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setMetalCano(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Enlatados <InputTexto>
-                                <i className="fa-solid fa-plus"/>3<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setMetalLata(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Pregos <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setMetalPregos(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Tampinha <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setMetalTampa(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Outros <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setMetalOutros(e.target.value)}
                                     />
                                 </InputTexto>
@@ -243,44 +331,49 @@ const RegistroColetas = () => {
                         </FormCadastro>
                     </FormContainer>
                     <FormContainer>
-                        <p>Papel</p>
+                        <PapelP>Papel</PapelP>
                         <FormCadastro>
                             <InputDiv>
                                 Cartolina/Papelao <InputTexto>
-                                <i className="fa-solid fa-plus"/>4<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPapelCartolina(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Caixa Pizza <InputTexto>
-                                <i className="fa-solid fa-plus"/>3<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPapelPizza(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Jornal/Revistas <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPapelJornal(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Folhas Caderno <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPapelCaderno(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Outros <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setPapelOutros(e.target.value)}
                                     />
                                 </InputTexto>
@@ -288,44 +381,49 @@ const RegistroColetas = () => {
                         </FormCadastro>
                     </FormContainer>
                     <FormContainer>
-                        <p>Vidro</p>
+                        <VidroP>Vidro</VidroP>
                         <FormCadastro>
                             <InputDiv>
                                 Potes <InputTexto>
-                                <i className="fa-solid fa-plus"/>4<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setVidroPotes(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Embalagens <InputTexto>
-                                <i className="fa-solid fa-plus"/>3<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setVidroEmbalagem(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Copos <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setVidroCopos(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Frasco Medicamento <InputTexto>
-                                <i className="fa-solid fa-plus"/>2<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setVidroRemedio(e.target.value)}
                                     />
                                 </InputTexto>
                             </InputDiv>
                             <InputDiv>
                                 Cacos/Outros <InputTexto>
-                                <i className="fa-solid fa-plus"/>1<Material
+                                <Material
                                     type="number"
+                                    placeholder="0"
                                     onChange={(e) => setVidroOutros(e.target.value)}
                                     />
                                 </InputTexto>
@@ -333,7 +431,19 @@ const RegistroColetas = () => {
                         </FormCadastro>
                     </FormContainer>
                 </FormsDiv>
-            </Main>
+                <BottomDiv>
+                    <SalvarButton onClick={() => handleResumo()}>Salvar</SalvarButton>
+                </BottomDiv>               
+            </Main>}
+            
+                    {shownResumo && 
+                          <Resumo metalCano={metalCano} metalLata={metalLata} metalTampa={metalTampa} metalOutros={metalOutros} metalPregos={metalPregos} metal={metal}
+                          vidroEmbalagem={vidroEmbalagem} vidroCopos={vidroCopos} vidroRemedio={vidroRemedio} vidroPotes={vidroPotes} vidroOutros={vidroOutros} vidro={vidro}
+                          plasticoGrande={plasticoGrande} plasticoPequeno={plasticoPequeno} plasticoTampinha={plasticoTampinha} plasticoCano={plasticoCano} plasticoOutros={plasticoOutros} plastico={plastico}
+                          papelJornal={papelJornal} papelPizza={papelPizza} papelCaderno={papelCaderno} papelCartolina={papelCartolina} papelOutros={papelOutros} papel={papel}
+                          handleResumo={handleResumo} handleReset={handleReset}
+                  >
+                        </Resumo>}
         </>
 
     )

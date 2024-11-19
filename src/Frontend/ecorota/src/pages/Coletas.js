@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
 import styled from 'styled-components'
 import BuscaPontos from '../components/BuscaPontos'
 import Header from '../components/Header'
+import { useCookies } from "react-cookie"
 
 
 const Main = styled.div`
@@ -58,8 +60,21 @@ const ButtonDiv = styled.div`
     }
 
 `
+const NavButton = styled(Link)`
+    text-decoration: none;
+    text-align:center;
+        border:none;
+        font-family: dosis;
+        font-weight: 600;
+        font-size: 2.3em;
+        padding: 20px 47px 20px 47px;
+        border-radius: 25px;
+`
 
 const Coletas = () => {
+
+    const [cookies, setCookie, removeCookie] = useCookies(null)
+    const AuthToken = cookies.AuthToken
     return(
         <Main>
             <Header/>
@@ -68,8 +83,8 @@ const Coletas = () => {
                     <BuscaPontos/>
                 </ContainerBusca>
                 <ButtonDiv>
-                    <button>REGISTRAR COLETA</button>
-                    <button>MEU PERFIL</button>
+                    {AuthToken ? <NavButton to = {'/coletas/registro'}>REGISTRAR COLETA</NavButton> : <NavButton to = {'/sign'}>Cadastre-se para coletar</NavButton>}
+                    <NavButton to = {'/perfil'}>MEU PERFIL</NavButton>
                 </ButtonDiv>
             </ContainerMain>
             

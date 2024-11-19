@@ -5,6 +5,7 @@
 }
 body{margin: auto;
   overflow-x: hidden;
+  background-color: #fff6de;
 }
 
 body::-webkit-scrollbar {
