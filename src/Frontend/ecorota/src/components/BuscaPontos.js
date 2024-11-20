@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import MapaEcoPontos from './MapaEcoPontos'
+import { useApiUrl } from '../context/ApiContext'
 
 
 
@@ -52,6 +53,7 @@ const BuscaCep = styled.input`
     text-align: center;
     font-family: dosis;
     font-weight: 600;
+    cursor: pointer;  
     
 `
 const ListaPontos = styled.li`
@@ -78,10 +80,12 @@ const BuscaPontos = () => {
     const [lngMap, setLngMap] = useState(null)
     const [ponto, setPonto] = useState(null)
     const [raioBusca, setRaioBusca] = useState(1)
+
+    const apiUrl = useApiUrl()
     const getCep = async (e) => {
       e.preventDefault()
       try{
-          const getCepData = await fetch (`http://localhost:8001/pesquisa/${cepPlaceholder}/${raioBusca}`,{
+          const getCepData = await fetch (`${apiUrl}/ecoponto/pesquisa/${cepPlaceholder}/${raioBusca}`,{
         method:'GET',
         headers: { 'Content-Type' : 'application/json'},
       })

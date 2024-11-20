@@ -135,7 +135,7 @@ const Login = () =>{
         return
       }
 
-      const response = await fetch (`http://localhost:8001/${endpoint}`,{
+      const response = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/auth/${endpoint}`,{
         method:'POST',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({ email, password, name })

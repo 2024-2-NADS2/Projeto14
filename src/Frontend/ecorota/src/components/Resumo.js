@@ -128,15 +128,17 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
     const handleCommit = async (e) => {
 
         
-        const post = await fetch (`http://localhost:8001/coletas/cadastro/${cookies.Email}`,{
+        const post = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/coletas/cadastro/${cookies.Email}`,{
             method:'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({ papel, plastico, metal, vidro })
         })
         const resJson = await post.json()
+        console.log(resJson)
         if(resJson.status === 201){
-            setSucesso(true)
+            notify()
         }
+        
         
     }
 
@@ -185,7 +187,7 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
                     </TextoDiv>
                     <ButtonDiv>
                         <SalvarButton onClick={() => {handleResumo(); handleReset()}}>Voltar</SalvarButton>
-                        <SalvarButton onClick={() => {handleCommit(); notify(); handleResumo()}}>Confimar</SalvarButton>
+                        <SalvarButton onClick={() => {handleCommit(); setTimeout(() => {handleResumo()}, 6000)}}>Confimar</SalvarButton>
                     </ButtonDiv>
                 </div>
                         <ToastContainer />
