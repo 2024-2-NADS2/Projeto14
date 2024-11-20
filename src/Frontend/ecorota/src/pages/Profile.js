@@ -124,7 +124,8 @@ export default function Profile() {
       setPapel(Number(response.data.qntpapel))
       setPlastico(Number(response.data.qntplastico))
     }
-    console.log(vidro, plastico, metal, papel)
+    console.log(response.data)
+    
   }catch(err){
     console.error(err)
   }

@@ -14,7 +14,7 @@
 
 <p align="center">
 <img src="/imagens/LogoEcoRota.jpg" alt="EcoRota" border="0">
-  EcoRota by <a href="https://www.linkedin.com/in/brosselindev/">João Pedro Brosselin</a>
+  EcoRota by <a href="https://www.linkedin.com/in/brosselindev/">João Pedro Brosselin</a> & <a href="https://www.linkedin.com/in/ceciliafornazieri/">Cecília Lopes Fiel Fornazieri (Design)</a>
 </p>
 
 
@@ -47,8 +47,98 @@ EcoRota é uma ferramenta que localiza pontos de coleta de lixo reciclável pró
 <b>imagens</b>: Imagens do sistema
 
 <b>src</b>: Pasta que contém o código fonte.
+## 🖥️ Requisitos do sistema 
+- ``HTML``
+- ``CSS``
+- ``JavaScript``
+- ``React``
+- ``Node.js``
+- ``Postgres``
 
-## 🗃 Histórico de lançamentos
+
+## 🖥️ Ferramentas de Desenvolvimento
+- 🛠 Instalação do React
+
+  • Instale o Node.js a partir do site oficial: [Node.js](https://nodejs.org/).
+
+  • No terminal, execute o comando para criar um novo projetoReact:
+
+```sh
+npx create-react-app ecorota
+````
+
+  • Entre no diretório do projeto:
+```sh
+cd ecorota
+````
+
+- 🖥️ Instale as dependências do projeto:
+```sh
+
+npm install instalará todas bibliotecas suficientes quando se usado o package.json do projeto.
+````
+
+
+- ⚙ Configuração do Projeto
+
+• Inicie o servidor de desenvolvimento com o comando:
+```sh
+npm start
+````
+• O projeto será aberto na seguinte URL: http://localhost:3001.
+
+## ⛏️ Configuração Backend NodeJs - gcloud
+<br/>O Backend é basedo em Node.js usando o pacote Express para utilizar de restApis
+<br/>Clone o repositório do gitHub e utilizando o package.json do projeto apenas rode o comando npm install
+<br/>O projeto utiliza do banco de dados Postgres e sua extensão Postgis para queries baseadas em geolocalização.
+<br/>Feito deploy do backend no Google Cloud Run pelo repositório e banco de dados Postgres também foi migrado para uma instancia cloud do Google
+<br/>Frontend utilizando também de apis do google como GoogleMaps JavaScriptApi e Geocoding.
+
+- Pacotes:
+```sh
+jsonwebtoken: criação de tokens de autenticação para paginas de perfil e login.
+express: criação e utilização de restApis.
+bcrypt: pacote de salt e criptografia de senhas para manter integridade do banco de dados.
+pg: biblioteca para lidar com queries com o Postgres.
+cors: liberar utilização de dados providos de outra origem.
+dotenv: para armazenar variáveis de ambiente.
+nodemon: utilizado para lidar com o servidor Node em desenvolvimento.
+
+````
+- Declarando os pacotes:
+```sh
+const express = require('express')
+require('dotenv').config()
+const cors = require('cors')
+const app = express()
+const pool = require('./config/db')
+const authRoutes = require('./routes/AuthRoutes')
+const ecoPontoRoutes = require('./routes/EcoPontoRoutes')
+const materialDataRoutes = require('./routes/MaterialDataRoutes')
+PORT = process.env.PORT
+app.use(cors())
+app.use(express.json())
+
+
+````
+
+- Declarando rotas:
+```sh
+//Rotas de Login Cadastro e Autenticação
+app.use('/auth', authRoutes)
+
+//Rotas de manipulação dos EcoPontos para  vizualicação no mapa e cadastro de novos pontos
+app.use('/ecoponto', ecoPontoRoutes)
+
+//Rotas de manipulação dos dados de coleta, registrar coleta, apagar e demonstrar dados de coleta 
+app.use('/materiais', materialDataRoutes)
+
+````
+
+## PS: Ainda em desenvolvimento contínuo
+<br/>Site ainda não está responsivo podendo causar divergências na estilização dependendo do dispositivo
+<br/>Ainda não há informações sobre coletas baseadas em mẽs, ou periôdo porém está em desenvolvimento
+
 
 ## 📋 Licença/License
 
@@ -56,3 +146,7 @@ EcoRota é uma ferramenta que localiza pontos de coleta de lixo reciclável pró
 
 ## 🎓 Referências
 
+<br/> <a href="https://developers.google.com/maps/documentation/geocoding/overview" >GeoCoding API by GoogleCloud </a>
+<br/> <a href="https://developers.google.com/maps/documentation/javascript/overview" >Maps JavaScript API  by GoogleCloud </a>
+<br/> <a href="https://abree.org.br/" > Abree </a>
+<br/> <a href="https://www.reciclasampa.com.br/" > ReciclaSampa </a>
