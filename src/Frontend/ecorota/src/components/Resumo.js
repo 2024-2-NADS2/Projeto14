@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie"
 import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useApiUrl } from "../context/ApiContext";
 
 const Container = styled.div`
     position: absolute;
@@ -125,10 +126,12 @@ const Resumo = ({ handleResumo, handleReset, metal, metalLata, metalCano, metalT
         progress: undefined,
         theme: "light",
         })
+    
+    const apiUrl = useApiUrl()
     const handleCommit = async (e) => {
 
         
-        const post = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/materiais/coletas/cadastro/${cookies.Email}`,{
+        const post = await fetch (`${apiUrl}/materiais/coletas/cadastro/${cookies.Email}`,{
             method:'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({ papel, plastico, metal, vidro })

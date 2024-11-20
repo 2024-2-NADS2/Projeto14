@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import { useState } from "react";
+import { useApiUrl } from "../context/ApiContext";
 
 const Main = styled.div`
     background-color:#fff6de;
@@ -35,10 +36,11 @@ const Admin = () => {
     const [lonCep, setLonCep] = useState(null)
     const [latCep, setLatCep] = useState(null)
 
+    const apiUrl = useApiUrl()
     const handleCommit = async (e) => {
 
         
-        const post = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/ecopontos/cadastro/ecopontos`,{
+        const post = await fetch (`${apiUrl}/ecopontos/cadastro/ecopontos`,{
             method:'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({ name, materiais, address, telefone, cep, lon, lat })
