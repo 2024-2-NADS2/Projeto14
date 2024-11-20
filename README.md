@@ -15,6 +15,7 @@
 <p align="center">
 <img src="/imagens/LogoEcoRota.jpg" alt="EcoRota" border="0">
   EcoRota by <a href="https://www.linkedin.com/in/brosselindev/">João Pedro Brosselin</a> & <a href="https://www.linkedin.com/in/ceciliafornazieri/">Cecília Lopes Fiel Fornazieri (Design)</a>
+  <br/>Link Site Oficial : <a href="https://ecorota.vercel.app/">EcoRota</a>
 </p>
 
 
@@ -136,6 +137,7 @@ app.use('/materiais', materialDataRoutes)
 ````
 
 ## PS: Ainda em desenvolvimento contínuo
+<br/>Novos pontos de coleta ainda estão sendo cadastrados.
 <br/>Site ainda não está responsivo podendo causar divergências na estilização dependendo do dispositivo
 <br/>Ainda não há informações sobre coletas baseadas em mẽs, ou periôdo porém está em desenvolvimento
 
