@@ -3,6 +3,7 @@ import { useCookies } from 'react-cookie'
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { useNavigate } from 'react-router-dom'
+import { useApiUrl } from "../context/ApiContext"
 
 const Main = styled.div`
     display:flex;
@@ -123,6 +124,8 @@ const Login = () =>{
     const navigate = useNavigate();
 
 
+    const apiUrl = useApiUrl()
+
     const viewLogin = (status) => {
       setError(null)
       setIsLogin(status)
@@ -135,7 +138,7 @@ const Login = () =>{
         return
       }
 
-      const response = await fetch (`${process.env.REACT_APP_ECOROTA_API_HOST}/auth/${endpoint}`,{
+      const response = await fetch (`${apiUrl}/auth/${endpoint}`,{
         method:'POST',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({ email, password, name })
